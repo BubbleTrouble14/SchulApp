@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,14 +26,15 @@ public class StudentListActivity extends AppCompatActivity {
         students.add(new Student("Manuel", "4AHMVA", "ronald.goedeke@outlook.com", "sagfasdgf"));
         students.add(new Student("Mario", "4AHMVA", "ronald.goedeke@outlook.com", "sagfasdgf"));
 
-        ListAdapter adapter = new StudentListAdapater(this, students);
+        final StudentListAdapter adapter = new StudentListAdapter(this, students);
 
         student_list.setAdapter(adapter);
 
         student_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(StudentListActivity.this, String.valueOf(4), Toast.LENGTH_SHORT).show();
+                Student student = adapter.getItemAtPostion(i);
+                Toast.makeText(StudentListActivity.this, student.getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }

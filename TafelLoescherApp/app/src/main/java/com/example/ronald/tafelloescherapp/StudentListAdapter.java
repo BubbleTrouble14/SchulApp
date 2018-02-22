@@ -15,12 +15,13 @@ import java.util.ArrayList;
  * Created by ronald on 2/21/2018.
  */
 
-public class StudentListAdapater extends ArrayAdapter<Student>{
+public class StudentListAdapter extends ArrayAdapter<Student>{
 
     private ArrayList<Student> list;
 
-    public StudentListAdapater(Context context, ArrayList<Student> list) {
+    public StudentListAdapter(Context context, ArrayList<Student> list) {
         super(context, R.layout.item_student, list);
+        this.list = list;
     }
 
     @Override
@@ -32,10 +33,17 @@ public class StudentListAdapater extends ArrayAdapter<Student>{
             view = inflater.inflate(R.layout.item_student, null);
         }
 
-        Student student = getItem(position);
+        Student student = list.get(position);
         TextView textView = view.findViewById(R.id.txt_item_student);
         textView.setText(student.getName());
 
         return view;
+    }
+
+
+
+    public Student getItemAtPostion(int i)
+    {
+        return list.get(i);
     }
 }
